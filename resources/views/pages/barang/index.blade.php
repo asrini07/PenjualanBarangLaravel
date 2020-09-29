@@ -1,40 +1,50 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+	<!-- Required meta tags -->
+	<title>CRUD Penjualan </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
   
   </head>
   <body>
-    <h1>Data Barang</h1>
-	<a href="/barang/create"> + Tambah Data</a>
-	<table border="1">
-		<tr>
-			<th>Id Barang</th>
-			<th>Name</th>
-			<th>Satuan</th>
-			<th>Stok Barang</th>
-			<th>Aksi</th>
-		</tr>
-		@foreach($data as $p)
-		<tr>
-			<td>{{ $p->id_barang }}</td>
-			<td>{{ $p->name }}</td>
-			<td>{{ $p->satuan }}</td>
-			<td>{{ $p->stok_barang }}</td>
-			<td>
-				<a href="/barang/edit/{{ $p->id }}">Edit</a>
-				|
-				<a href="/barang/hapus/{{ $p->id }}">Hapus</a>
-			</td>
-		</tr>
-		@endforeach
-	</table>
+  		<div class="jumbotron text-center">
+			<h1>Data Barang</h1>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<a href="/barang/create" class="btn btn-primary"> + Tambah Data</a><br><br>
+					<table class="table table-striped">
+						<tr>
+							<th>Id Barang</th>
+							<th>Name</th>
+							<th>Satuan</th>
+							<th>Stok Barang</th>
+							<th>Aksi</th>
+						</tr>
+
+						@foreach($data as $p)
+						<tr>
+							<td>{{ $p->id_barang }}</td>
+							<td>{{ $p->name }}</td>
+							<td>{{ $p->satuan }}</td>
+							<td>{{ $p->stok_barang }}</td>
+							<td>
+								<a href="/barang/edit/{{ $p->id }}" class="btn btn-info">Edit</a>
+								|
+								<a href="/barang/hapus/{{ $p->id }}" class="btn btn-danger">Hapus</a>
+							</td>
+						</tr>
+						@endforeach
+						
+					</table>
+				</div>
+			</div>
+		</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
