@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Barang;
+use App\Models\Penjualan;
 use DB;
 use Validator;
 
@@ -19,11 +20,6 @@ class BarangController extends Controller
         // dd('a');
         $data = Barang::all();
   
-        // return response()->json([
-        //     'success' => true,
-        //     'status' =>200,
-        //     'data' => $data
-        // ]);
         return view('pages/barang/index', compact('data'));
     }
 
@@ -61,23 +57,17 @@ class BarangController extends Controller
             $store->id_barang = $idbarang;
             $store->save();
             \DB::commit();
-            return \Redirect::to("/barang")->with('sc_msg', 'Data Barang Berhasil Ditambahkan');
+            return \Redirect::to("/barang")->with('success', 'Data Barang Berhasil Ditambahkan');
         
           
         } catch(\Error $e){
-            return \Redirect::to("/barang")->with('err_msg', 'Data Buku Gagal Ditambahkan');
+            return \Redirect::to("/barang")->with('error', 'Data Buku Gagal Ditambahkan');
         }     
     
     }
-    
+
     public function edit($id)
     {
-        // dd($id);
-        // $authorize = new User();
-        // $authorize->authorizeRoles([1]);
-
-        // $judul     = "Provinsi";
-        // $tabmenu = "master";
 
         $data = Barang::find($id);
         return view('pages/barang/edit', compact('data'));
@@ -104,11 +94,40 @@ class BarangController extends Controller
             $data->save();
         
             \DB::commit();
-            return \Redirect::to("/barang")->with('sc_msg', 'Data Barang Berhasil Ditambahkan');
+            return \Redirect::to("/barang")->with('success', 'Data Barang Berhasil Ditambahkan');
           
           
         } catch(\Error $e){
-            return \Redirect::to("/barang")->with('err_msg', 'Data Buku Gagal Ditambahkan');
+            return \Redirect::to("/barang")->with('error', 'Data Buku Gagal Ditambahkan');
         }     
+    }
+
+    public function destroy($id)
+    {     
+    //    dd($id);
+        // $authorize = new User();
+        // $authorize->authorizeRoles([1]);
+
+        $checkdata = Penjualan::where('id_barang', $id)->first();
+       
+        \DB::beginTransaction();
+        try{          
+
+            if( empty($checkdata)) {
+                // dd('masukkk aaaaa');
+                $barang = Barang::where('id', $id)->delete();
+                \DB::commit();
+
+                return \Redirect::to("/barang")->with('success', 'Berhasil Menghapus Data Barang ');
+            } else {
+                // dd('gaaaaagal');
+                \DB::rollBack();
+                return \Redirect::to("/barang")->with('error', 'Gagal menghapus Data Barang karena data sudah digunakan');
+            }
+
+        } catch(\Error $e){
+            \DB::rollBack();
+            return \Redirect::to("/barang")->with('error', 'Gagal menghapus Data Barang karena data sudah digunakan');
+        }
     }
 }

@@ -42,7 +42,7 @@
                         <div class="form-group row">
                             <label  class="col-sm-3 col-form-label"> Jumlah </label>
                             <div class="col-sm-9">
-                            <input type="text" name="jumlah" class="form-control" placeholder="Jumlah Barang" required>
+                            <input type="text" name="jumlah" class="form-control" placeholder="Jumlah Barang" onkeypress="return hanyaAngka(event)" required>
                             </div>
                         </div>
                     </div>
@@ -86,6 +86,13 @@
 	    });
 
      });
+     function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+            
+        return true;
+    }
     // $('select[name="id_barang"]').on('click', function () {
     //     var idbarang = $(this).val();
     //     var harga = $('.harga');

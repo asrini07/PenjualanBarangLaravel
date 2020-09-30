@@ -23,7 +23,7 @@ Route::prefix('barang')->group(function () {
     Route::get('/create',"BarangController@create")->name('create-barang');
     Route::post('/save', 'BarangController@store')->name('store-barang');
     Route::get('/edit/{id}',"BarangController@edit");
-    // Route::get('/{id}', 'GendreController@show');
+    Route::get('/delete/{id}','BarangController@destroy')->name('destroy-barang');
     Route::post('/update/{id}', 'BarangController@update')->name('update-barang');
 });
 
@@ -39,3 +39,7 @@ Route::prefix('penjualan')->group(function () {
     // // Route::get('/{id}', 'GendreController@show');
     Route::post('/update/{id}', 'PenjualanController@update')->name('update-penjualan');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

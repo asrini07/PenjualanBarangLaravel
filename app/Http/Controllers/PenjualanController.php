@@ -40,7 +40,9 @@ class PenjualanController extends Controller
             $barang = Barang::where('id',$request->id_barang)->first();
           
             if($request->jumlah > $barang->stok_barang){
-                return \Redirect::to("/penjualan")->with('err_msg', 'Data Penjualan Gagal Ditambahkan');
+                
+                return \Redirect::to("/penjualan")->with('error', 'Data Gagal Ditambahkan karena jumlah pembelian melebihi stook barang');
+          
             } else {
                 $total = $request->jumlah * $barang->harga;
                 $stokbarang = $barang->stok_barang - (int) $request->jumlah;
@@ -55,13 +57,13 @@ class PenjualanController extends Controller
                 
             
                 \DB::commit();
-                return \Redirect::to("/penjualan")->with('sc_msg', 'Data Penjualan Berhasil Ditambahkan');
+                return \Redirect::to("/penjualan")->with('success', 'Data Penjualan Berhasil Ditambahkan');
             }
          
           
           
         } catch(\Error $e){
-            return \Redirect::to("/penjualan")->with('err_msg', 'Data Penjualan Gagal Ditambahkan');
+            return \Redirect::to("/penjualan")->with('error', 'Data Penjualan Gagal Ditambahkan');
         }     
     }
 
@@ -108,7 +110,7 @@ class PenjualanController extends Controller
          
             if($request->jumlah > $barang->stok_barang){
                 // dd('masukkkkk');
-                return \Redirect::to("/penjualan")->with('err_msg', 'Data Penjualan Gagal Ditambahkan');
+                return \Redirect::to("/penjualan")->with('error', 'Data Gagal Ditambahkan karena jumlah pembelian melebihi stook barang');
             } else {
                 // dd('editttttt');
                 $total = $request->jumlah * $barang->harga;
@@ -125,13 +127,13 @@ class PenjualanController extends Controller
                 
             
                 \DB::commit();
-                return \Redirect::to("/penjualan")->with('sc_msg', 'Data Penjualan Berhasil Ditambahkan');
+                return \Redirect::to("/penjualan")->with('success', 'Data Penjualan Berhasil Ditambahkan');
             }
          
           
           
         } catch(\Error $e){
-            return \Redirect::to("/penjualan")->with('err_msg', 'Data Penjualan Gagal Ditambahkan');
+            return \Redirect::to("/penjualan")->with('error', 'Data Penjualan Gagal Ditambahkan');
         }    
 
     }

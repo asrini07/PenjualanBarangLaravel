@@ -18,6 +18,20 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<a href="/barang/create" class="btn btn-primary"> + Tambah Data</a><br><br>
+					@if ($message = Session::get('success'))
+					<div class="alert alert-success alert-block">
+						<button type="button" class="close" data-dismiss="alert">×</button> 
+						<strong>{{ $message }}</strong>
+					</div>
+					@endif
+
+					@if ($message = Session::get('error'))
+					<div class="alert alert-danger alert-block">
+						<button type="button" class="close" data-dismiss="alert">×</button> 
+						<strong>{{ $message }}</strong>
+					</div>
+					@endif
+
 					<table class="table table-striped">
 						<tr>
 							<th>Id Barang</th>
@@ -38,7 +52,7 @@
 							<td>
 								<a href="/barang/edit/{{ $p->id }}" class="btn btn-info">Edit</a>
 								|
-								<!-- <a href="/barang/hapus/{ $p->id }" class="btn btn-danger">Hapus</a> -->
+								<a href="/barang/delete/{{ $p->id }}" class="btn btn-danger">Hapus</a>
 							</td>
 						</tr>
 						@endforeach

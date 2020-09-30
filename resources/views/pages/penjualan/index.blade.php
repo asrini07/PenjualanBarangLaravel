@@ -39,8 +39,8 @@
 							<td>{{ $p->total_harga }}</td>
 							<td>
 								<a href="/penjualan/edit/{{ $p->id }}" class="btn btn-info">Edit</a>
-								|
-								<a href="/penjualan/hapus/{{ $p->id }}" class="btn btn-danger">Hapus</a>
+								<!-- | -->
+								<!-- <a href="/penjualan/delete/{ $p->id }" class="btn btn-danger">Hapus</a> -->
 							</td>
 						</tr>
 						@endforeach
