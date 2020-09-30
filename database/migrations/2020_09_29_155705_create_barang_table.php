@@ -18,9 +18,11 @@ class CreateBarangTable extends Migration
             $table->string('id_barang')->nullable();
             $table->string('name')->nullable();
             $table->string('satuan')->nullable();
+            $table->integer('harga')->default(0);
             $table->integer('stok_barang')->default(0);
             $table->timestamps();
         });
+
     }
 
     /**

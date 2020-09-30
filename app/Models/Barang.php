@@ -18,7 +18,7 @@ class Barang extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_barang','name','satuan','stok_barang'];
+    protected $fillable = ['id_barang','name','satuan','stok_barang','harga'];
 
    
 }

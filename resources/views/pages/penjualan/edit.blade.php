@@ -10,37 +10,31 @@
     <body>
 
         <div class="jumbotron text-center">
-            <h1>Form Ubah Barang</h1>
+            <h1>Form Ubah Penjualan</h1>
         </div>
         <div class="container">
 		    <div class="row">
 			    <div class="col-sm-12">
-                    <form role="form" action="{{ route('update-barang', $data->id) }}" method="post" id="form" class="needs-validation" novalidate="">
+                    <form role="form" action="{{ route('update-penjualan', $data->id) }}" method="post" id="form" class="needs-validation" novalidate="">
                     {{ csrf_field() }}
                     <div >
                         
                         <div class="form-group row">
-                            <label  class="col-sm-3 col-form-label"> Name </label>
+                            <label  class="col-sm-3 col-form-label"> Name barang</label>
                             <div class="col-sm-9">
-                            <input type="text" name="name" class="form-control" placeholder="Nama Barang" value="{{ $data->name ?? old('name') }}" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label  class="col-sm-3 col-form-label"> Satuan </label>
-                            <div class="col-sm-9">
-                            <input type="text" name="satuan" class="form-control" placeholder="Satuan Barang" value="{{ $data->satuan ?? old('satuan') }}"required>
+                            <input type="text" name="name" class="form-control" placeholder="Nama Barang" value="{{ $data->name ?? old('name') }}" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label  class="col-sm-3 col-form-label"> Harga </label>
                             <div class="col-sm-9">
-                            <input type="text" name="harga" class="form-control" placeholder="Harga Barang"  value="{{ $data->harga ?? old('harga') }}"required>
+                            <input type="text" name="harga" class="form-control harga" placeholder="Harga Barang" value="{{ $data->harga ?? old('harga') }}" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label  class="col-sm-3 col-form-label"> Stok Barang </label>
+                            <label  class="col-sm-3 col-form-label"> Jumlah </label>
                             <div class="col-sm-9">
-                            <input type="text" name="stok" class="form-control" placeholder="Stok Barang" value="{{ $data->stok_barang ?? old('stok_barang') }}" required>
+                            <input type="text" name="jumlah" class="form-control" placeholder="Jumlah Barang" value="{{ $data->jumlah ?? old('jumlah') }}" required>
                             </div>
                         </div>
                     </div>

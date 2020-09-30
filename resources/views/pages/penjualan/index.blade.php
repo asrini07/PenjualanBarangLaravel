@@ -12,33 +12,35 @@
   </head>
   <body>
   		<div class="jumbotron text-center">
-			<h1>Data Barang</h1>
+			<h1>Data Penjualan</h1>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					<a href="/barang/create" class="btn btn-primary"> + Tambah Data</a><br><br>
+					<a href="/penjualan/create" class="btn btn-primary"> + Tambah Data</a><br><br>
 					<table class="table table-striped">
 						<tr>
 							<th>Id Barang</th>
 							<th>Name</th>
 							<th>Satuan</th>
-							<th>Harga Satuan</th>
-							<th>Stok Barang</th>
+							<th>Jumlah</th>
+							<th>Harga</th>
+							<th>Total Harga</th>
 							<th>Aksi</th>
 						</tr>
 
 						@foreach($data as $p)
 						<tr>
-							<td>{{ $p->id_barang }}</td>
+							<td>{{ $p->barang }}</td>
 							<td>{{ $p->name }}</td>
 							<td>{{ $p->satuan }}</td>
+							<td>{{ $p->jumlah }}</td>
 							<td>{{ $p->harga }}</td>
-							<td>{{ $p->stok_barang }}</td>
+							<td>{{ $p->total_harga }}</td>
 							<td>
-								<a href="/barang/edit/{{ $p->id }}" class="btn btn-info">Edit</a>
+								<a href="/penjualan/edit/{{ $p->id }}" class="btn btn-info">Edit</a>
 								|
-								<!-- <a href="/barang/hapus/{ $p->id }" class="btn btn-danger">Hapus</a> -->
+								<a href="/penjualan/hapus/{{ $p->id }}" class="btn btn-danger">Hapus</a>
 							</td>
 						</tr>
 						@endforeach

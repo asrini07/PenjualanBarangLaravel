@@ -40,37 +40,36 @@ class BarangController extends Controller
         \Validator::make($request->all(), [
             'name' => 'required|max:255', 
             'satuan' => 'required|max:255', 
-            'stok' => 'required|integer',
+            'stok' => 'required|integer', 
+            'harga' => 'required|integer',
         ])->validate();
 
         \DB::beginTransaction();
         try{
        
-            if( empty($check)) {
-                $store          = new Barang;
-                $store->name    = $request->name;
-                $store->satuan    = $request->satuan; 
-                $store->stok_barang    = $request->stok;            
-                $store->save();
-               
+           
+            $store          = new Barang;
+            $store->name    = $request->name;
+            $store->satuan    = $request->satuan; 
+            $store->harga    = $request->harga; 
+            $store->stok_barang    = $request->stok;            
+            $store->save();
+            
 
-                $idbarang =(string)$store->id;
-                $idbarang = "PR0".$idbarang;
-                $store->id_barang = $idbarang;
-                $store->save();
-                \DB::commit();
-                return \Redirect::to("/barang")->with('status', 'Data Barang Berhasil Ditambahkan');
-            } else {
-
-            \DB::rollBack();
-                return \Redirect::to("/barang")->with('status', 'Data Buku Gagal Ditambahkan');
-            }
+            $idbarang =(string)$store->id;
+            $idbarang = "PR0".$idbarang;
+            $store->id_barang = $idbarang;
+            $store->save();
+            \DB::commit();
+            return \Redirect::to("/barang")->with('sc_msg', 'Data Barang Berhasil Ditambahkan');
+        
           
         } catch(\Error $e){
-            return \Redirect::to("/barang")->with('status', 'Data Buku Gagal Ditambahkan');
+            return \Redirect::to("/barang")->with('err_msg', 'Data Buku Gagal Ditambahkan');
         }     
     
     }
+    
     public function edit($id)
     {
         // dd($id);
@@ -89,29 +88,27 @@ class BarangController extends Controller
         \Validator::make($request->all(), [
             'name' => 'required|max:255', 
             'satuan' => 'required|max:255', 
+            'harga' => 'required|integer', 
             'stok' => 'required|integer',
         ])->validate();
 
         \DB::beginTransaction();
         try{
        
-            if( empty($check)) {
-                $data = Barang::where('id',$id)->first();
-                $data->name    = $request->name;
-                $data->satuan    = $request->satuan; 
-                $data->stok_barang   = $request->stok;            
-                $data->save();
-            
-                \DB::commit();
-                return \Redirect::to("/barang")->with('status', 'Data Barang Berhasil Ditambahkan');
-            } else {
-
-            \DB::rollBack();
-                return \Redirect::to("/barang")->with('status', 'Data Buku Gagal Ditambahkan');
-            }
+          
+            $data = Barang::where('id',$id)->first();
+            $data->name    = $request->name;
+            $data->harga    = $request->harga; 
+            $data->satuan    = $request->satuan; 
+            $data->stok_barang   = $request->stok;            
+            $data->save();
+        
+            \DB::commit();
+            return \Redirect::to("/barang")->with('sc_msg', 'Data Barang Berhasil Ditambahkan');
+          
           
         } catch(\Error $e){
-            return \Redirect::to("/barang")->with('status', 'Data Buku Gagal Ditambahkan');
+            return \Redirect::to("/barang")->with('err_msg', 'Data Buku Gagal Ditambahkan');
         }     
     }
 }

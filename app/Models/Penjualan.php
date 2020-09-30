@@ -18,7 +18,7 @@ class Penjualan extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_barang','jumlah','harga','total_harga'];
+    protected $fillable = ['id_barang','jumlah','total_harga'];
 
    
 }

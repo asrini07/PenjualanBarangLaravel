@@ -26,3 +26,16 @@ Route::prefix('barang')->group(function () {
     // Route::get('/{id}', 'GendreController@show');
     Route::post('/update/{id}', 'BarangController@update')->name('update-barang');
 });
+
+
+//CRUD Barang
+Route::prefix('penjualan')->group(function () {
+    Route::get('/', 'PenjualanController@index');
+    Route::get('/create',"PenjualanController@create")->name('create-penjualan');
+    Route::post('/save', 'PenjualanController@store')->name('store-penjualan');
+
+    Route::get('/{id}',"PenjualanController@getharga");
+    Route::get('/edit/{id}',"PenjualanController@edit");
+    // // Route::get('/{id}', 'GendreController@show');
+    Route::post('/update/{id}', 'PenjualanController@update')->name('update-penjualan');
+});

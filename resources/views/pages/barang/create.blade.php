@@ -29,6 +29,12 @@
                             <div class="col-sm-9">
                             <input type="text" name="satuan" class="form-control" placeholder="Satuan Barang" required>
                             </div>
+                        </div>   
+                        <div class="form-group row">
+                            <label  class="col-sm-3 col-form-label"> Harga </label>
+                            <div class="col-sm-9">
+                            <input type="text" name="harga" class="form-control" placeholder="Harga Barang" required>
+                            </div>
                         </div>
                         <div class="form-group row">
                             <label  class="col-sm-3 col-form-label"> Stok Barang </label>
