@@ -1,6 +1,6 @@
 <html>
 <head>
-	<!-- <title>CRUD Penjualan </title> -->
+	<title>CRUD Penjualan </title>
 </head>
 <body>
 
